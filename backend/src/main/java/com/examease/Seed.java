@@ -17,7 +17,9 @@ public class Seed {
         return args -> {
             if (!users.existsByUsername("admin")) {
                 users.save(new AppUser(
-                        "admin", encoder.encode("Admin@123"), "ADMIN"));
+                        "admin", encoder.encode(
+        System.getenv().getOrDefault("ADMIN_PASSWORD", ""))
+        , "ADMIN"));
             }
 
             if (exams.count() == 0) {
